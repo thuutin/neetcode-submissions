@@ -1,0 +1,18 @@
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        dp = [0] * len(s)
+        # dp[i] = dp[i - 1]
+        # dp[i] += dp[i - 2] #if s[i - 1:i + 1] is 10 -> 26
+        dp[0] = 1 if int(s[0]) > 0 else 0
+        print(dp)
+        for i in range(1, len(s)):
+            if int(s[i]) > 0:
+                dp[i] = dp[i - 1]
+            two_digit = int(s[i - 1: i + 1])
+            if two_digit >= 10 and two_digit <= 26:
+                if i == 1:
+                    dp[i] += 1
+                else:
+                    dp[i] += dp[i - 2]
+            print(dp)
+        return dp[-1]
