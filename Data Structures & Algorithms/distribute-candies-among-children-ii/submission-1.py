@@ -1,0 +1,23 @@
+class Solution:
+    def distributeCandies(self, n: int, limit: int) -> int:
+        res = 0
+        for a in range(min(limit, n) + 1):
+            left = n - a
+            if left > 2 * limit:
+                continue
+            if left > limit:
+                minValue = left - limit
+                maxValue = limit
+                res += abs(maxValue - minValue) + 1
+            else:
+                res += left + 1
+                #math.comb(n + 1, 1)
+        return res
+
+        # 100 100
+        # 35 44 53
+        # 25 34 43 52
+        # 20 100, 21, 99, 
+        # 20 -> 100
+        # n limit
+        # 
